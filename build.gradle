@@ -15,9 +15,9 @@ plugins {
 
 dependencies {
     // Use the latest Groovy version for building this library
-    compile 'org.codehaus.groovy:groovy-all:2.4.15'
+    implementation 'org.codehaus.groovy:groovy-all:2.4.15'
 	
-	testCompile 'junit:junit:4.12'
+	implementation 'junit:junit:4.12'
 
 }
 
