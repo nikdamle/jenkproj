@@ -13,6 +13,11 @@ plugins {
     id 'war'
 }
 
+ext {
+	def myEnvVar = project.hasProperty("commitId")?project.getProperty("commitId"):"local"
+	jar.archiveBaseName = "$myEnvVar"
+}
+
 dependencies {
     // Use the latest Groovy version for building this library
     implementation 'org.codehaus.groovy:groovy-all:2.4.15'
