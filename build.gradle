@@ -14,8 +14,8 @@ plugins {
 }
 
 ext {
-	def myEnvVar = project.hasProperty("commitId")?project.getProperty("commitId"):"local"
-	jar.archiveBaseName = "$myEnvVar"
+	def commId = project.hasProperty("commitId")?project.getProperty("commitId").substring(0, 7):"local"
+	jar.archiveBaseName = "$commId"
 }
 
 dependencies {
