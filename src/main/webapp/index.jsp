@@ -1,0 +1,1 @@
+<%= "Hello World from Jetty running on a docker container" %>
