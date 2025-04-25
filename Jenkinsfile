@@ -1,7 +1,13 @@
 pipeline {
-  agent any
+  agent none
   stages {
     stage('01-Build') {
+      agent {
+        docker {
+          image 'gradle:8.13.0-jdk17-corretto'
+        }
+
+      }
       steps {
         echo 'Step 1: Build'
         sh 'gradle clean jar'
@@ -9,6 +15,12 @@ pipeline {
     }
 
     stage('02-Test') {
+      agent {
+        docker {
+          image 'gradle:8.13.0-jdk17-corretto'
+        }
+
+      }
       steps {
         echo 'Step 2: Test'
         sh 'gradle clean test'
@@ -17,6 +29,12 @@ pipeline {
     }
 
     stage('03-Package') {
+      agent {
+        docker {
+          image 'gradle:8.13.0-jdk17-corretto'
+        }
+
+      }
       steps {
         echo 'Step 3: Package'
         sh 'gradle clean -x test -PcommitId=$GIT_COMMIT jar'
