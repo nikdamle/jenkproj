@@ -4,8 +4,7 @@ pipeline {
     stage('01-Build') {
       steps {
         echo 'Step 1: Build'
-        sh 'gradle -PcommitId=$GIT_COMMIT jar'
-        archiveArtifacts 'build/libs/*'
+        sh 'gradle jar'
       }
     }
 
@@ -19,7 +18,8 @@ pipeline {
     stage('03-Package') {
       steps {
         echo 'Step 3: Package'
-        sh 'gradle -x test jar'
+        sh 'gradle -x test -PcommitId=$GIT_COMMIT jar'
+        archiveArtifacts 'build/libs/*'
       }
     }
 
