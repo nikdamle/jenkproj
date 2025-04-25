@@ -42,6 +42,12 @@ pipeline {
       }
     }
 
+    stage('DockerImage') {
+      steps {
+        sh 'docker build -t myjenkproj:v1 .'
+      }
+    }
+
   }
   tools {
     gradle 'Gradle8.3'
