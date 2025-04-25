@@ -12,7 +12,7 @@ pipeline {
       steps {
         echo 'Step 2: Test'
         sh 'gradle clean test'
-        archiveArtifacts 'build/reports/tests/test'
+        archiveArtifacts 'build/reports/tests/test/*'
       }
     }
 
