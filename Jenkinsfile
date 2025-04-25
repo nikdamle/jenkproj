@@ -43,6 +43,7 @@ pipeline {
     }
 
     stage('DockerImage') {
+      agent any
       steps {
         sh 'docker build -t myjenkproj:v1 .'
       }
