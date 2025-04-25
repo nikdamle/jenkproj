@@ -4,21 +4,21 @@ pipeline {
     stage('01-Build') {
       steps {
         echo 'Step 1: Build'
-        sh 'gradle jar'
+        sh 'gradle clean jar'
       }
     }
 
     stage('02-Test') {
       steps {
         echo 'Step 2: Test'
-        sh 'gradle test'
+        sh 'gradle clean test'
       }
     }
 
     stage('03-Package') {
       steps {
         echo 'Step 3: Package'
-        sh 'gradle -x test -PcommitId=$GIT_COMMIT jar'
+        sh 'gradle clean -x test -PcommitId=$GIT_COMMIT jar'
         archiveArtifacts 'build/libs/*'
       }
     }
