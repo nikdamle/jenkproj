@@ -45,7 +45,16 @@ pipeline {
     stage('DockerImage') {
       agent any
       steps {
-        sh 'docker build -t myjenkproj:v1 .'
+        script {
+          docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin'){
+            def commitHash = env.GIT_COMMIT.take(7)
+            def dockerImage = docker.build("nikdamle/myjenkproj:${commitHash}", "./")
+            dockerImage.push()
+            dockerImage.push("latest")
+            dockerImage.push("dev")
+          }
+        }
+
       }
     }
 
